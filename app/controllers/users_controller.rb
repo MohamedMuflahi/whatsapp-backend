@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     end
     
     def create
-        user = User.new(username: param['username'], password: params['password'])
-        if user.save
+        user = User.create(user_params)
+        if user
             payload = {'user_id': user.id}
             token = encode(payload)
             render json: {
@@ -31,9 +31,11 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.find(params[:id])
-        user.update(online: params[:online]);
-        ActionCable.server.broadcast 'appearance_channel', json_response(user)
+        # user = User.find(params[:id])
+        # if user
+        #     user.online = params[:online]
+        # end
+        # ActionCable.server.broadcast 'appearance_channel', json_response(@user)
     end
 
     private
