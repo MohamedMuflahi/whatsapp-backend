@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
     def index
         users = User.all
         render json: UserSerializer.new(users)
@@ -19,28 +20,26 @@ class UsersController < ApplicationController
         end
     end
 
-    def show
-        token = request.headers['Authentication'].split(' ')[1]
-        payload = decode(token)
-        user = User.find(payload['user_id'])
-        if user
-            render json: UserSerializer.new(user)
-        else 
-            render json: { message: 'Error', authenticated: false }
-        end
+  def show
+    token = request.headers['Authentication'].split(' ')[1]
+    payload = decode(token)
+    user = User.find(payload['user_id'])
+    if user
+      render json: UserSerializer.new(user)
+    else
+      render json: { message: 'Error', authenticated: false }
     end
+  end
 
-    def update
-        # user = User.find(params[:id])
-        # if user
-        #     user.online = params[:online]
-        # end
-        # ActionCable.server.broadcast 'appearance_channel', json_response(@user)
-    end
+  def update
+    # user = User.find(params[:id])
+    # user.update(online: params[:online]);
+    # ActionCable.server.broadcast 'appearance_channel', json_response(user)
+  end
 
-    private
+  private
 
-    def user_params
-        params.require(:user).permit(:username, :password, :avatar)
-    end
+  def user_params
+    params.require(:user).permit(:username, :password)
+  end
 end
