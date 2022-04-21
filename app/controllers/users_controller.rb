@@ -6,8 +6,11 @@ class UsersController < ApplicationController
     end
     
     def create
-        user = User.create(user_params)
+        user = User.create!(user_params)
         if user
+            room = Room.create(name: user.username, description: "This is your space.")
+            chat = Chat.create(user_id: user.id,room_id: room.id)
+            message = Message.create(content: "This is your space. Draft messages or list your to-dos. You can also talk to yourself here, but please bear in mind you’ll have to supply both sides of the conversation.",room_id:room.id,user_id: user.id)
             payload = {'user_id': user.id}
             token = encode(payload)
             render json: {
@@ -40,6 +43,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.permit(:username, :password)
   end
 end
