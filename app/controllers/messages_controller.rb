@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
         if message.save
             puts "successfully saved a message!"
             RoomsChannel.broadcast_to(room, {
-                room: room,
+                room: RoomSerializer.new(room),
                 users: UserSerializer.new(room.users),
                 messages: room.messages
             })
