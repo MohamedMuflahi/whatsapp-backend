@@ -4,18 +4,22 @@ Message.destroy_all
 Chat.destroy_all
 
 # In order to attach a png file with ActiveStorage, I had to remove the column, avatar, from the users table
-betty = User.create!({username: 'betty', password: 'password'})
-harold = User.create!({username: 'harold', password: 'password'})
+will = User.create!({username: 'Will', password: '123'})
+mohamed = User.create!({username: 'Mohamed', password: '123'})
+brandon = User.create!({username: 'Brandon', password: '123'})
+fg = Room.create(name: 'Flatiron Dropouts', description: 'Cohort: 13122!')
+rats = Room.create(name: 'NYC SEWER RATS', description: "Come say hi at the 34st F line")
+cats = Room.create(name: 'Cat lovers', description: "Chat for people that love cats")
 
-cats = Room.create(name: 'Cat Lovers', description: 'Chat for People that LOVE CATS!')
-trek = Room.create(name: 'Trekkies', description: "Chat for Weirdos")
-cons = Room.create(name: 'Conspiracy Theorists', description: "Chat for People that think they are smarter than they actually are!")
 
-Message.create(user_id: betty.id, room_id: cats.id, sender_name:  betty.username, content: 'Mr. Whiskers is my best friend. He just gets me.')
-Message.create(user_id: harold.id, room_id: cats.id, sender_name: harold.username, content: 'People are jerks. Cats are awesome.')
+Message.create(user_id: will.id, room_id: cats.id, sender_name: will.username, content: 'People are jerks. Cats are awesome.')
+Message.create(user_id: brandon.id, room_id: fg.id, sender_name: brandon.username, content: 'Congrats! on completing Phase 4')
+Message.create(user_id: will.id, room_id: fg.id, sender_name: will.username, content: '🎉')
+Message.create(user_id: mohamed.id, room_id: fg.id, sender_name: mohamed.username, content: '🎉')
 
-Chat.create(user_id: betty.id,room_id: cats.id)
-Chat.create(user_id: harold.id,room_id: cats.id)
-Chat.create(user_id: harold.id,room_id: trek.id)
-Chat.create(user_id: betty.id,room_id: trek.id)
-Chat.create(user_id: betty.id,room_id: cons.id)
+Chat.create(user_id: will.id,room_id: fg.id)
+Chat.create(user_id: brandon.id,room_id: fg.id)
+Chat.create(user_id: mohamed.id,room_id: fg.id)
+Chat.create(user_id: mohamed.id,room_id: rats.id)
+Chat.create(user_id: will.id,room_id: rats.id)
+Chat.create(user_id: will.id,room_id: cats.id)
