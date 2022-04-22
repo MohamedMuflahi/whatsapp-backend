@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_143525) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
+    t.string "sender_name"
     t.integer "user_id"
     t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false

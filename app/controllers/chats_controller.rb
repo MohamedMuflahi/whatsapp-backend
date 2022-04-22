@@ -6,7 +6,7 @@ class ChatsController < ApplicationController
         if room
             puts "successfully saved a message!"
             RoomsChannel.broadcast_to(room, {
-                room: RoomSerializer.new(room),
+                room: room,
                 users: UserSerializer.new(room.users),
                 messages:  room.messages
             })
@@ -21,7 +21,7 @@ class ChatsController < ApplicationController
             # puts chat
             Chat.delete(chat.id)
             RoomsChannel.broadcast_to(room, {
-                room: RoomSerializer.new(room),
+                room: room,
                 users: UserSerializer.new(room.users),
                 messages: room.messages
             })

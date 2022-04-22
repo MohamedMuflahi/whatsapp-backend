@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         if user
             room = Room.create(name: user.username, description: "This is your space.")
             chat = Chat.create(user_id: user.id,room_id: room.id)
-            message = Message.create(content: "This is your space. Draft messages or list your to-dos. You can also talk to yourself here, but please bear in mind you’ll have to supply both sides of the conversation.",room_id:room.id,user_id: user.id)
+            message = Message.create(content: "This is your space. Draft messages or list your to-dos. You can also talk to yourself here, but please bear in mind you’ll have to supply both sides of the conversation.",room_id:room.id,user_id: user.id, sender_name: user.username)
             payload = {'user_id': user.id}
             token = encode(payload)
             render json: {

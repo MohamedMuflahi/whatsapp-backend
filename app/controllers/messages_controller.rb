@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
         if message.save
             puts "successfully saved a message!"
             RoomsChannel.broadcast_to(room, {
-                room: RoomSerializer.new(room),
+                room: room,
                 users: UserSerializer.new(room.users),
                 messages: room.messages
             })
@@ -21,6 +21,6 @@ class MessagesController < ApplicationController
     private
 
     def message_params
-        params.require(:message).permit(:content, :user_id, :room_id)
+        params.require(:message).permit(:content, :user_id, :room_id, :sender_name)
     end
 end

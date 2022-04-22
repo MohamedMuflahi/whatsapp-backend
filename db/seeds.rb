@@ -11,8 +11,8 @@ cats = Room.create(name: 'Cat Lovers', description: 'Chat for People that LOVE C
 trek = Room.create(name: 'Trekkies', description: "Chat for Weirdos")
 cons = Room.create(name: 'Conspiracy Theorists', description: "Chat for People that think they are smarter than they actually are!")
 
-Message.create(user_id: betty.id, room_id: cats.id, content: 'Mr. Whiskers is my best friend. He just gets me.')
-Message.create(user_id: harold.id, room_id: cats.id, content: 'People are jerks. Cats are awesome.')
+Message.create(user_id: betty.id, room_id: cats.id, sender_name:  betty.username, content: 'Mr. Whiskers is my best friend. He just gets me.')
+Message.create(user_id: harold.id, room_id: cats.id, sender_name: harold.username, content: 'People are jerks. Cats are awesome.')
 
 Chat.create(user_id: betty.id,room_id: cats.id)
 Chat.create(user_id: harold.id,room_id: cats.id)
